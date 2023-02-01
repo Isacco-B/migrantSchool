@@ -3,7 +3,8 @@ from django.views import generic
 
 
 class StudentListView(generic.ListView):
-    pass
+    template_name = 'students:student_list.html'
+    context_object_name = 'students'
 
 
 class StudentCreateView(generic.CreateView):
