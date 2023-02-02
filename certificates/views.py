@@ -17,7 +17,7 @@ class CertificateCreateView(generic.CreateView):
     form_class = CertificateForm
 
     def get_success_url(self) -> str:
-        return reverse('')
+        return reverse('certificates:certificate-list')
 
 class CertificateDetailView(generic.DeleteView):
     template_name = 'certificates/certificate_detail.html'
@@ -34,7 +34,7 @@ class CertificateUpdateView(generic.UpdateView):
     form_class = CertificateForm
 
     def get_success_url(self) -> str:
-        return reverse('certificates:certificate:list')
+        return reverse('certificates:certificate-list')
 
     def get_queryset(self):
         return Certificate.objects.all()
