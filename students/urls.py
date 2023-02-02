@@ -19,6 +19,7 @@ from .views import (
     StudentCreateView,
     StudentDetailView,
     StudentUpdateView,
+    StudentDeleteView,
     )
 
 app_name = 'students'
@@ -28,5 +29,6 @@ urlpatterns = [
     path('create/', StudentCreateView.as_view(), name='student-create'),
     path('<int:pk>/', StudentDetailView.as_view(), name='student-detail'),
     path('update/<int:pk>/', StudentUpdateView.as_view(), name='student-update'),
+    path('delete/<int:pk>/', StudentDeleteView.as_view(), name='student-delete'),
 
 ]

@@ -50,5 +50,11 @@ class StudentUpdateView(generic.UpdateView):
 
 
 class StudentDeleteView(generic.DeleteView):
-    pass
+    template_name = 'students/student_delete.html'
+    context_object_name = 'students'
 
+    def get_queryset(self):
+        return User.objects.all()
+
+    def get_success_url(self) -> str:
+        return reverse('students:student-list')

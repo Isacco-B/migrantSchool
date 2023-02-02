@@ -41,4 +41,11 @@ class CertificateUpdateView(generic.UpdateView):
 
 
 class CertificateDeleteView(generic.DeleteView):
-    pass
+    template_name = 'certificates/certificate_delete.html'
+    context_object_name = 'certificates'
+
+    def get_queryset(self):
+        return Certificate.objects.all()
+
+    def get_success_url(self) -> str:
+        return reverse('certificates:certificate-list')
