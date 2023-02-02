@@ -18,6 +18,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from base.views import LandingPageView
+from base.views import SignupView
 from django.contrib.auth.views import (
     LoginView,
     LogoutView,
@@ -33,7 +34,7 @@ urlpatterns = [
     path('certificates/', include('certificates.urls', namespace='certificates')),
     path('', LandingPageView.as_view(), name='landing-page'),
     path('login/', LoginView.as_view(), name='login'),
-    #path('signup/', SignupView.as_view(), name='signup'),
+    path('signup/', SignupView.as_view(), name='signup'),
     path('logout/', LogoutView.as_view(), name='logout'),
 
 

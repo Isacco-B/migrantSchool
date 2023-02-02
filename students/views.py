@@ -33,7 +33,6 @@ class StudentDetailView(generic.DetailView):
         return User.objects.all()
 
 
-
 class StudentUpdateView(generic.UpdateView):
     template_name = 'students/student_update.html'
     context_object_name = 'students'
@@ -45,7 +44,6 @@ class StudentUpdateView(generic.UpdateView):
 
     def get_success_url(self) -> str:
         return reverse('students:student-list')
-
 
 
 

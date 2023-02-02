@@ -19,6 +19,7 @@ class CertificateCreateView(generic.CreateView):
     def get_success_url(self) -> str:
         return reverse('certificates:certificate-list')
 
+
 class CertificateDetailView(generic.DeleteView):
     template_name = 'certificates/certificate_detail.html'
     context_object_name = 'certificates'
