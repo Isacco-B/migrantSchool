@@ -14,7 +14,7 @@
                   Overview
               </a>
               <a href={% url 'certificates:certificate-list' %} class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">
-                Certificate
+                Certificate {{ student_certificate_count }}
               </a>
               <a href={% url 'students:student-update' students.pk %} class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">
                   Update Details
@@ -54,7 +54,7 @@
             </a>
           </div>
       </div>
-      <img alt="profile logo" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src={% static 'img/profile.svg' %}>
+      <img alt="profile logo" class="lg:w-1/2 w-full lg:h-auto h-50 object-cover object-center rounded" src={% static 'img/profile.svg' %}>
     </div>
   </div>
 </section>

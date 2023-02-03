@@ -11,7 +11,7 @@
       {% endif %}
     </nav>
     {% if request.user.is_authenticated %}
-    <a href={% url 'login' %} class="inline-flex items-center py-1 px-3 mr-5 focus:outline-none hover: rounded text-base mt-4 md:mt-0">{{user.username|upper}}
+    <a class="inline-flex items-center py-1 px-3 mr-5 focus:outline-none hover: rounded text-base mt-4 md:mt-0">{{user.username|upper}}
       <img class="w-4 h-4 ml-1" src={% static 'img/user-profile.svg' %} alt="">
     </a>
     <a href={% url 'students:student-detail' request.user.pk %} class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 mr-5 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Profile

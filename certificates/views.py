@@ -1,4 +1,5 @@
 from django.shortcuts import render, reverse
+from django.contrib import messages
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from base.models import Certificate
@@ -11,12 +12,10 @@ class CertificateListView(generic.ListView):
     context_object_name = 'certificates'
 
     def get_queryset(self):
-        if self.request.user.is_staff:
+        if self.request.user.is_staff or not self.request.user.is_authenticated:
             return Certificate.objects.all()
         elif self.request.user.is_authenticated:
             return Certificate.objects.filter(student=self.request.user.pk)
-        else:
-            return Certificate.objects.all()
 
 
 
@@ -26,6 +25,10 @@ class CertificateCreateView(StaffAndLoginRequiredMixin, generic.CreateView):
 
     def get_success_url(self) -> str:
         return reverse('certificates:certificate-list')
+
+    def form_valid(self, form):
+        messages.success(self.request, 'You have successfuly created a certificate')
+        return super(CertificateCreateView, self).form_valid(form)
 
 
 class CertificateDetailView(generic.DeleteView):
@@ -46,6 +49,11 @@ class CertificateUpdateView(StaffAndLoginRequiredMixin, generic.UpdateView):
 
     def get_queryset(self):
         return Certificate.objects.all()
+
+    def form_valid(self, form):
+        form.save()
+        messages.info(self.request, 'You have successfuly update a certificate')
+        return super(CertificateUpdateView, self).form_valid(form)
 
 
 class CertificateDeleteView(StaffAndLoginRequiredMixin, generic.DeleteView):

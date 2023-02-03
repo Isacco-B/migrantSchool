@@ -6,6 +6,7 @@ from base.forms import StudentForm, StudentUpdateForm
 
 
 
+
 class StudentListView(LoginRequiredMixin, generic.ListView):
     template_name = 'students/student_list.html'
     context_object_name = 'students'

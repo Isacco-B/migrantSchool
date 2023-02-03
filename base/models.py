@@ -30,6 +30,7 @@ class User(AbstractUser):
 #         return self.student.username
 
 class Certificate(models.Model):
+    course = models.CharField(max_length=20)
     grade = models.IntegerField(default=0)
     date_of_creation = models.DateTimeField(default=timezone.now())
     description = models.TextField()
