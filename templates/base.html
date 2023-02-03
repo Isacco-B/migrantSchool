@@ -12,8 +12,10 @@
 <body>
     <div class="max-w-7xl mx-auto">
         {% include 'navbar.html' %}
-        {% block content %}
-        {% endblock content %}
+        <div class='min-h-screen'>
+            {% block content %}
+            {% endblock content %}
+        </div>
         {% include 'footer.html' %}
     </div>
 </body>

@@ -7,11 +7,14 @@
   <div class="container px-5 py-24 mx-auto">
     <div class="lg:w-4/5 mx-auto flex flex-wrap">
       <div class="lg:w-1/2 w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
-          <h2 class="text-sm title-font text-gray-500 tracking-widest">PROFILE</h2>
+          <h2 class="text-sm title-font text-gray-500 tracking-widest">PROFILE {{students.username|upper}}</h2>
           <h1 class="text-gray-900 text-3xl title-font font-medium mb-4">{{ certificates.student.first_name }}</h1>
           <div class="flex mb-4">
               <a href={% url 'students:student-detail' students.pk %} class="flex-grow text-yellow-500 border-b-2 border-yellow-500 py-2 text-lg px-1">
                   Overview
+              </a>
+              <a href={% url 'certificates:certificate-list' %} class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">
+                Certificate
               </a>
               <a href={% url 'students:student-update' students.pk %} class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">
                   Update Details
@@ -46,7 +49,7 @@
       <span class="ml-auto text-gray-900">{{ students.phone_number}}</span>
   </div>
           <div class="flex">
-            <a href="{% url 'students:student-delete' students.pk %}" class="w-1/2 mt-3 text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
+            <a href="{% url 'students:student-delete' students.pk %}" class="w-full mt-3 text-center text-white bg-yellow-500 border-0 py-2 px-6 focus:outline-none hover:bg-yellow-600 rounded">
                 Delete
             </a>
           </div>

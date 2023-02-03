@@ -16,8 +16,13 @@
         </button>
       </div>
 
-      <div class="flex justify-center items-center bg-gray-100 p-4">
-        <p class="text-gray-500 text-sm text-center">Don't have an account? <a href='#' class="text-indigo-500 hover:text-indigo-600 active:text-indigo-700 transition duration-100">Register</a></p>
+      <div class="items-center bg-gray-100 p-4">
+        <div>
+          <p class="text-gray-500 text-sm text-center">Don't have an account? <a href={% url 'signup' %} class="text-indigo-500 hover:text-indigo-600 active:text-indigo-700 transition duration-100">Register</a></p>
+        </div>
+        <div>
+          <p class="text-gray-500 text-sm text-center">Forgot passowrd? <a href={% url 'reset-password' %} class="text-indigo-500 hover:text-indigo-600 active:text-indigo-700 transition duration-100">Reset password</a></p>
+        </div>
       </div>
     </form>
   </div>

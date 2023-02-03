@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% load static %}
-
 {% block content %}
 
 <section class="text-gray-700 body-font overflow-hidden">
@@ -13,9 +12,11 @@
               <a href={% url 'certificates:certificate-detail' certificates.pk %} class="flex-grow text-yellow-500 border-b-2 border-yellow-500 py-2 text-lg px-1">
                   Overview
               </a>
+              {% if request.user.is_staff %}
               <a href={% url 'certificates:certificate-update' certificates.pk %} class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">
                   Update Details
               </a>
+              {% endif %}
           </div>
           <p class="leading-relaxed mb-4">{{ certificates.description }}</p>
           <div class="flex border-t border-gray-300 py-2">
@@ -30,11 +31,13 @@
               <span class="text-gray-500">Student</span>
               <span class="ml-auto text-gray-900">{{ certificates.student }}</span>
           </div>
+          {% if request.user.is_staff %}
           <div class="flex">
-            <a href="{% url 'certificates:certificate-delete' certificates.pk %}" class="w-1/2 mt-3 text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
+            <a href="{% url 'certificates:certificate-delete' certificates.pk %}" class="w-full mt-3 text-center text-white bg-yellow-500 border-0 py-2 px-6 focus:outline-none hover:bg-yellow-600 rounded">
                 Delete
             </a>
           </div>
+          {% endif %}
       </div>
       <img alt="certificate" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src={% static 'img/certificate.svg' %}>
     </div>

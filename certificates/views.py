@@ -1,7 +1,9 @@
 from django.shortcuts import render, reverse
 from django.views import generic
+from django.contrib.auth.mixins import LoginRequiredMixin
 from base.models import Certificate
 from base.forms import CertificateForm
+from .mixins import StaffAndLoginRequiredMixin
 
 
 class CertificateListView(generic.ListView):
@@ -9,10 +11,16 @@ class CertificateListView(generic.ListView):
     context_object_name = 'certificates'
 
     def get_queryset(self):
-        return Certificate.objects.all()
+        if self.request.user.is_staff:
+            return Certificate.objects.all()
+        elif self.request.user.is_authenticated:
+            return Certificate.objects.filter(student=self.request.user.pk)
+        else:
+            return Certificate.objects.all()
 
 
-class CertificateCreateView(generic.CreateView):
+
+class CertificateCreateView(StaffAndLoginRequiredMixin, generic.CreateView):
     template_name = 'certificates/certificate_create.html'
     form_class = CertificateForm
 
@@ -28,10 +36,9 @@ class CertificateDetailView(generic.DeleteView):
         return Certificate.objects.all()
 
 
-class CertificateUpdateView(generic.UpdateView):
+class CertificateUpdateView(StaffAndLoginRequiredMixin, generic.UpdateView):
     template_name = 'certificates/certificate_update.html'
     context_object_name = 'certificates'
-    queryset = Certificate.objects.all()
     form_class = CertificateForm
 
     def get_success_url(self) -> str:
@@ -41,7 +48,7 @@ class CertificateUpdateView(generic.UpdateView):
         return Certificate.objects.all()
 
 
-class CertificateDeleteView(generic.DeleteView):
+class CertificateDeleteView(StaffAndLoginRequiredMixin, generic.DeleteView):
     template_name = 'certificates/certificate_delete.html'
     context_object_name = 'certificates'
 

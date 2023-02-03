@@ -25,21 +25,25 @@ from django.contrib.auth.views import (
     PasswordResetView,
     PasswordResetConfirmView,
     PasswordResetDoneView,
+    PasswordResetCompleteView,
 
 )
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    path('', LandingPageView.as_view(), name='landing-page'),
     path('students/', include('students.urls', namespace='students')),
     path('certificates/', include('certificates.urls', namespace='certificates')),
-    path('', LandingPageView.as_view(), name='landing-page'),
+
     path('login/', LoginView.as_view(), name='login'),
     path('signup/', SignupView.as_view(), name='signup'),
     path('logout/', LogoutView.as_view(), name='logout'),
 
-
     path('reset-password', PasswordResetView.as_view(), name='reset-password'),
     path('password-reset-done', PasswordResetDoneView.as_view(), name='password_reset_done'),
+    path('reset-password-confirm/<uidb64>/<token>/', PasswordResetConfirmView.as_view(), name='password-reset-confirm'),
+    path('password_reset_complete/', PasswordResetCompleteView.as_view(), name='password_reset_complete'),
 ]
 
 if settings.DEBUG:

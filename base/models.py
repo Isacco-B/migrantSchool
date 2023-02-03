@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.db.models.signals import post_save
 from django.contrib.auth.models import AbstractUser
 
 
@@ -22,6 +23,12 @@ class User(AbstractUser):
         return self.username
 
 
+# class UserProfile(models.Model):
+#     student = models.OneToOneField("User", on_delete=models.CASCADE)
+
+#     def __str__(self) -> str:
+#         return self.student.username
+
 class Certificate(models.Model):
     grade = models.IntegerField(default=0)
     date_of_creation = models.DateTimeField(default=timezone.now())
@@ -37,9 +44,11 @@ class Certificate(models.Model):
         return self.description
 
 
+# def post_user_created_signal(sender, instance, created, **kwargs):
+#     if created:
+#         UserProfile.objects.create(student=instance)
 
-
-
+# post_save.connect(post_user_created_signal, sender=User)
 
 
 

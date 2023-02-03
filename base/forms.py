@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm, UsernameField
 from base.models import Certificate, User
 
 class CertificateForm(forms.ModelForm):
@@ -8,21 +9,21 @@ class CertificateForm(forms.ModelForm):
         fields = '__all__'
 
 
-class StudentForm(forms.ModelForm):
+class StudentForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields =  (
-            'username',
+        fields = (
+            "username",
             'first_name',
             'last_name',
-            'email',
-            'password',
             'age',
             'gender',
+            'email',
             'address',
             'phone_number',
-        )
+            )
+        field_classes = {"username": UsernameField}
 
 class StudentUpdateForm(forms.ModelForm):
 
