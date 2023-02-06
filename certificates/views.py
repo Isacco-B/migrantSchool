@@ -7,12 +7,12 @@ from base.forms import CertificateForm
 from .mixins import StaffAndLoginRequiredMixin
 
 
-class CertificateListView(generic.ListView):
+class CertificateListView(LoginRequiredMixin, generic.ListView):
     template_name = 'certificates/certificate_list.html'
     context_object_name = 'certificates'
 
     def get_queryset(self):
-        if self.request.user.is_staff or not self.request.user.is_authenticated:
+        if self.request.user.is_staff:
             return Certificate.objects.all()
         elif self.request.user.is_authenticated:
             return Certificate.objects.filter(student=self.request.user.pk)
