@@ -1,7 +1,10 @@
 from django.db import models
-from django.utils import timezone
+from django.utils import timezone, dateformat, formats
 from django.db.models.signals import post_save
 from django.contrib.auth.models import AbstractUser
+from .utils import sendTransaction
+import json
+import hashlib
 
 
 class User(AbstractUser):
@@ -23,33 +26,40 @@ class User(AbstractUser):
         return self.username
 
 
-# class UserProfile(models.Model):
-#     student = models.OneToOneField("User", on_delete=models.CASCADE)
-
-#     def __str__(self) -> str:
-#         return self.student.username
-
 class Certificate(models.Model):
     course = models.CharField(max_length=20)
     grade = models.IntegerField(default=0)
-    date_of_creation = models.DateTimeField(default=timezone.now())
+    date_of_creation = models.DateField(default=timezone.localdate())
     description = models.TextField()
     transaction_id = models.TextField(null=True, blank=True, editable=False)
     student = models.ForeignKey("User", on_delete=models.CASCADE)
+
+    def save(self):
+        self.transaction_id = self.write_on_chain()
+        print(self.transaction_id)
+        super(Certificate, self).save()
+
+    def write_on_chain(self):
+        dictionary = {
+            'first_name': self.student.first_name,
+            'last_name': self.student.last_name,
+            'course': self.course,
+            'grade': self.grade,
+            'date_of_creation': dateformat.format(self.date_of_creation, formats.get_format('DATE_FORMAT')),
+            'description': self.description,
+        }
+        hash_didictionary = hashlib.sha256(json.dumps(dictionary).encode("utf-8")).hexdigest()
+        transaction_id = sendTransaction(message=hash_didictionary)
+        return transaction_id
 
     class Meta:
         verbose_name = ("Certificate")
         verbose_name_plural = ("Certificates")
 
     def __str__(self):
-        return self.description
+        return self.student.username + " " + self.course
 
 
-# def post_user_created_signal(sender, instance, created, **kwargs):
-#     if created:
-#         UserProfile.objects.create(student=instance)
-
-# post_save.connect(post_user_created_signal, sender=User)
 
 
 

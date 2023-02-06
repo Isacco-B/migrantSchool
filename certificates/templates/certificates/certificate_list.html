@@ -38,11 +38,11 @@
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Description
                             </th>
-                            {% if request.user.is_authenticated %}
+                            {% comment %} {% if request.user.is_authenticated %}
                             <th scope="col" class="relative px-6 py-3">
                             <span class="sr-only">Edit</span>
                             </th>
-                            {% endif %}
+                            {% endif %} {% endcomment %}
                         </tr>
                     </thead>
                     <tbody>
@@ -63,13 +63,13 @@
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                     {{ certificate.description|slice:":30"}}....
                                 </td>
-                                {% if request.user.is_staff %}
+                                {% comment %} {% if request.user.is_staff %}
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                     <a href="{% url 'certificates:certificate-update' certificate.pk %}" class="text-yellow-600 hover:text-yellow-900">
                                         Edit
                                     </a>
                                 </td>
-                                {% endif %}
+                                {% endif %} {% endcomment %}
                             </tr>
 
                         {% empty %}

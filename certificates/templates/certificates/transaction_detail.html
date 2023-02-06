@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<section class="text-gray-700 body-font overflow-hidden">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="w-full mx-auto flex flex-wrap">
+      <div class="w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
+          <h2 class="text-sm title-font text-gray-500 tracking-widest">INFO TRANSACTION</h2>
+          <br>
+          <div class="flex border-t border-gray-300 py-2">
+              <span class="text-gray-500">Transaction Hash:</span>
+              <span class="ml-auto text-gray-900">{{ transiction.hash }}</span>
+          </div>
+          <div class="flex border-t border-gray-300 py-2">
+              <span class="text-gray-500">Block:</span>
+              <span class="ml-auto text-gray-900">{{ transiction.blockNumber }}</span>
+          </div>
+          <div class="flex border-t border-b mb-6 border-gray-300 py-2">
+              <span class="text-gray-500">Nonce:</span>
+              <span class="ml-auto text-gray-900">{{ transiction.nonce }}</span>
+          </div>
+          <div class="flex border-t border-b mb-6 border-gray-300 py-2">
+            <span class="text-gray-500">From:</span>
+            <span class="ml-auto text-gray-900">{{ transiction.from }}</span>
+          </div>
+          <div class="flex border-t border-b mb-6 border-gray-300 py-2">
+            <span class="text-gray-500">To:</span>
+            <span class="ml-auto text-gray-900">{{ transiction.to }}</span>
+          </div>
+          <div class="flex border-t border-b mb-6 border-gray-300 py-2">
+            <span class="text-gray-500">Gas Price:</span>
+            <span class="ml-auto text-gray-900">{{ transiction.gasPrice }}</span>
+          </div>
+          <div class="flex border-t border-b mb-6 border-gray-300 py-2">
+            <span class="text-gray-500">Gas:</span>
+            <span class="ml-auto text-gray-900">{{ transiction.gas }}</span>
+          </div>
+          <div class="flex border-t border-b mb-6 border-gray-300 py-2">
+            <span class="text-gray-500">Input Data:</span>
+            <span class="ml-auto text-gray-900">{{ transiction.input }}</span>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

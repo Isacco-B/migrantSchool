@@ -4,23 +4,28 @@
 
 <section class="text-gray-700 body-font overflow-hidden">
   <div class="container px-5 py-24 mx-auto">
-    <div class="lg:w-4/5 mx-auto flex flex-wrap">
-      <div class="lg:w-1/2 w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
+    <div class="mx-auto flex flex-wrap">
+      <div class="w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
           <h2 class="text-sm title-font text-gray-500 tracking-widest">CERTIFICATE</h2>
           <h1 class="text-gray-900 text-3xl title-font font-medium mb-4">{{ certificates.student.first_name }}</h1>
           <div class="flex mb-4">
               <a href={% url 'certificates:certificate-detail' certificates.pk %} class="flex-grow text-yellow-500 border-b-2 border-yellow-500 py-2 text-lg px-1">
                   Overview
               </a>
-              {% if request.user.is_staff %}
+              {% comment %} {% if request.user.is_staff %}
               <a href={% url 'certificates:certificate-update' certificates.pk %} class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">
                   Update Details
               </a>
-              {% endif %}
+              {% endif %} {% endcomment %}
           </div>
-          <textarea name="" id="" cols="40" rows="10">
-            {{ certificates.description|linebreaks }}
-          </textarea>
+          <div class="flex border-t border-gray-300 py-2">
+            <span class="text-gray-500">Course</span>
+            <span class="ml-auto text-gray-900">{{ certificates.course }}</span>
+          </div>
+          <div class="flex border-t border-gray-300 py-2">
+            <span class="text-gray-500">Descriprion</span>
+            <span class="ml-auto text-gray-900">{{ certificates.description }}</span>
+          </div>
           <div class="flex border-t border-gray-300 py-2">
               <span class="text-gray-500">Grade</span>
               <span class="ml-auto text-gray-900">{{ certificates.grade }} / 100</span>
@@ -33,6 +38,14 @@
               <span class="text-gray-500">Student</span>
               <span class="ml-auto text-gray-900">{{ certificates.student }}</span>
           </div>
+          <div class="flex border-t border-b mb-6 border-gray-300 py-2">
+            <span class="text-gray-500">Transaction_id</span>
+            <span class="ml-auto text-gray-900">{{ certificates.transaction_id }}</span>
+          </div>
+          <div class="flex border-t border-b mb-6 border-gray-300 py-2">
+            <span class="text-gray-500">Transaction-Info</span>
+            <span class="ml-auto text-blue-500 "><a href='#'>Info</a></span>
+          </div>
           {% if request.user.is_staff %}
           <div class="flex">
             <a href="{% url 'certificates:certificate-delete' certificates.pk %}" class="w-full mt-3 text-center text-white bg-yellow-500 border-0 py-2 px-6 focus:outline-none hover:bg-yellow-600 rounded">
@@ -41,7 +54,6 @@
           </div>
           {% endif %}
       </div>
-      <img alt="certificate" class="lg:w-1/2 w-full lg:h-auto h-50 object-cover object-center rounded" src={% static 'img/certificate.svg' %}>
     </div>
   </div>
 </section>

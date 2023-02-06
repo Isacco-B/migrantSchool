@@ -1,9 +1,11 @@
 from django.shortcuts import render, reverse
 from django.contrib import messages
 from django.views import generic
+from django.views.generic.base import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from base.models import Certificate
 from base.forms import CertificateForm
+from base.utils import sendTransaction, get_transaction
 from .mixins import StaffAndLoginRequiredMixin
 
 
@@ -18,7 +20,6 @@ class CertificateListView(LoginRequiredMixin, generic.ListView):
             return Certificate.objects.filter(student=self.request.user.pk)
 
 
-
 class CertificateCreateView(StaffAndLoginRequiredMixin, generic.CreateView):
     template_name = 'certificates/certificate_create.html'
     form_class = CertificateForm
@@ -31,7 +32,7 @@ class CertificateCreateView(StaffAndLoginRequiredMixin, generic.CreateView):
         return super(CertificateCreateView, self).form_valid(form)
 
 
-class CertificateDetailView(generic.DeleteView):
+class CertificateDetailView(generic.DetailView):
     template_name = 'certificates/certificate_detail.html'
     context_object_name = 'certificates'
 
@@ -65,3 +66,13 @@ class CertificateDeleteView(StaffAndLoginRequiredMixin, generic.DeleteView):
 
     def get_success_url(self) -> str:
         return reverse('certificates:certificate-list')
+
+
+def TransactionDetailView(request):
+    transiction = get_transaction('0xdf9ab500a87d92d058c65053ce831d648052d82fdacd8f6aac5a945c12d72832')
+    context = {
+        "transiction": transiction
+    }
+    return render(request, "certificates/transaction_detail.html", context)
+
+

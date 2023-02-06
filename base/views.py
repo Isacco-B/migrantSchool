@@ -22,7 +22,7 @@ class SearchResultsView(generic.ListView):
 
     def get_queryset(self):
         query = self.request.GET.get('q')
-        object_list = Certificate.objects.filter(course__icontains=query)
+        object_list = Certificate.objects.filter(transaction_id__icontains=query)
         return object_list
 
 

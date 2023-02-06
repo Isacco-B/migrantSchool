@@ -20,6 +20,7 @@ from .views import (
     CertificateDetailView,
     CertificateUpdateView,
     CertificateDeleteView,
+    TransactionDetailView,
 )
 
 app_name = 'certificates'
@@ -28,6 +29,7 @@ urlpatterns = [
     path('', CertificateListView.as_view(), name='certificate-list'),
     path('create/', CertificateCreateView.as_view(), name='certificate-create'),
     path('<int:pk>/', CertificateDetailView.as_view(), name='certificate-detail'),
-    path('update/<int:pk>/', CertificateUpdateView.as_view(), name='certificate-update'),
+    path('slug:slug', TransactionDetailView, name='transaction-detail'),
+    # path('update/<int:pk>/', CertificateUpdateView.as_view(), name='certificate-update'),
     path('delete/<int:pk>/', CertificateDeleteView.as_view(), name='certificate-delete'),
 ]

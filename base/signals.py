@@ -17,9 +17,9 @@ def login_success(sender, request, user, **kwargs):
     if user_last_ip is None:
         r.set(user, user_ip)
     elif user_last_ip.decode() != user_ip:
-        print(f"Ip: {user_ip} - Ip_Precedente {user_last_ip}")
+        print(f"Ip: {user_ip} - Ip_Precedente {user_last_ip.decode()}")
         r.set(user, user_ip)
-        messages.warning(request,f'your ip has changed: current_ip {user_ip} | last_ip {user_last_ip}')
+        messages.warning(request,f'your ip has changed: current_ip {user_ip} | last_ip {user_last_ip.decode()}')
 
 
 
