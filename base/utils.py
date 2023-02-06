@@ -21,7 +21,6 @@ def sendTransaction(message):
 
     tx = w3.eth.sendRawTransaction(signedTx.rawTransaction)
     txId = w3.toHex(tx)
-    print(txId)
     return txId
 
 

@@ -68,8 +68,8 @@ class CertificateDeleteView(StaffAndLoginRequiredMixin, generic.DeleteView):
         return reverse('certificates:certificate-list')
 
 
-def TransactionDetailView(request):
-    transiction = get_transaction('0xdf9ab500a87d92d058c65053ce831d648052d82fdacd8f6aac5a945c12d72832')
+def transaction_detail_view(request, txid):
+    transiction = get_transaction(txid)
     context = {
         "transiction": transiction
     }

@@ -44,7 +44,7 @@
           </div>
           <div class="flex border-t border-b mb-6 border-gray-300 py-2">
             <span class="text-gray-500">Transaction-Info</span>
-            <span class="ml-auto text-blue-500 "><a href='#'>Info</a></span>
+            <span class="ml-auto text-blue-500 "><a href={% url 'certificates:transaction-detail' certificates.transaction_id %}>Info</a></span>
           </div>
           {% if request.user.is_staff %}
           <div class="flex">

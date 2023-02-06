@@ -36,7 +36,6 @@ class Certificate(models.Model):
 
     def save(self):
         self.transaction_id = self.write_on_chain()
-        print(self.transaction_id)
         super(Certificate, self).save()
 
     def write_on_chain(self):
