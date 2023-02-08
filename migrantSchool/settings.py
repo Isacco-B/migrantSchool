@@ -11,22 +11,18 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
-import environ
+from dotenv import load_dotenv
 import os
 
-
-
-env = environ.Env(
-    DEBUG=(bool, False)
-)
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
-DEBUG = env('DEBUG')
-SECRET_KEY = env('SECRET_KEY')
+
+DEBUG = True
+SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 ALLOWED_HOSTS = ['*']
 
@@ -151,6 +147,11 @@ LOGIN_URL = "/login"
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
+SECURE_SSL_REDIRECT = False
+SESSION_COOKIE_SECURE = False
+SECURE_HSTS_INCLUDE_SUBDOMAINS = False
+SECURE_HSTS_PRELOAD = False
+
 if not DEBUG:
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     SECURE_SSL_REDIRECT = True
@@ -164,10 +165,10 @@ if not DEBUG:
 
     ALLOWED_HOSTS = ['*']
 
-    EMAIL_HOST = 'smtps.aruba.it'
-    EMAIL_HOST_USER = 'demo@isaccobertoli.com'
-    EMAIL_HOST_PASSWORD = '893ncdsuh398hsD!'
+    EMAIL_HOST = str(os.getenv('EMAIL_HOST'))
+    EMAIL_HOST_USER = str(os.getenv('EMAIL_HOST_USER'))
+    EMAIL_HOST_PASSWORD = str(os.getenv('EMAIL_HOST_PASSWORD'))
     EMAIL_USE_TLS = True
     EMAIL_PORT = 465
-    DEFAULT_FROM_EMAIL = 'demo@isaccobertoli.com'
+    DEFAULT_FROM_EMAIL = str(os.getenv('DEFAULT_FROM_EMAIL'))
 
