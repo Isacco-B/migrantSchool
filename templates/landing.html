@@ -12,16 +12,16 @@
         to bridge the gap for migrants and equip them with the skills and knowledge needed to thrive in the
         job market. Our goal is to support and empower migrants, breaking down barriers and promoting diversity
         and inclusiveness in the workplace.</p>
-      <div class="flex w-full justify-center items-end">
-        <div class="relative mr-4 lg:w-full xl:w-1/2 w-2/4 md:w-full text-left">
-          <label for="hero-field" class="leading-7 text-sm text-gray-600">Search Certificate</label>
-          <form action="{% url 'search_results' %}" method="get">
+      <form action="{% url 'search_results' %}" method="get">
+        <div class="flex w-full justify-center items-end">
+          <div class="relative mr-4 lg:w-full xl:w-1/2 w-2/4 md:w-full text-left">
+            <label for="hero-field" class="leading-7 text-sm text-gray-600">Search Certificate</label>
             <input type="text" id="hero-field" name="q" class="w-full bg-gray-100 bg-opacity-50 rounded focus:ring-2 focus:ring-yellow-200 focus:bg-transparent border border-gray-300 focus:border-yellow-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-          </form>
+          </div>
+          <button type="submit" class="inline-flex text-white bg-yellow-500 border-0 py-2 px-6 focus:outline-none hover:bg-yellow-600 rounded text-lg">Search</button>
         </div>
-        <button class="inline-flex text-white bg-yellow-500 border-0 py-2 px-6 focus:outline-none hover:bg-yellow-600 rounded text-lg">Search</button>
-      </div>
-      <p class="text-sm mt-2 text-gray-500 mb-8 w-full">Es"0x00000000000000000"</p>
+        <p class="text-sm mt-2 text-gray-500 mb-8 w-full">Es"0x00000000000000000"</p>
+      </form>
     </div>
   </div>
 </section>

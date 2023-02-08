@@ -2,7 +2,6 @@ from django.shortcuts import render, reverse
 from django.views import generic
 from .forms import StudentForm
 from .models import Certificate
-import redis
 
 class LandingPageView(generic.TemplateView):
     template_name = "landing.html"
