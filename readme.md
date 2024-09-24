@@ -1,5 +1,5 @@
-# MigrantSchool Web application
-Implement a training certificate creation system with an existence proof on the blockchain.
+# MigrantSchool
+- MigrantSchool is a web platform for generating educational certificates for migrants, with proof stored on the blockchain. Each certificate is securely recorded on the blockchain through a transaction.
 <a href="https://demo1.isaccobertoli.com/">Try Demo</a>
 
 
